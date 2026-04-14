@@ -1,0 +1,65 @@
+version: "1"
+
+# Default execution mode. Overridden per invocation.
+default_mode: correctness
+
+tracks:
+  api:
+    description: "CoreAPI surface correctness — request/response contracts, error handling, edge cases"
+    signal:
+      pass_fail: true
+      metrics: false
+    modes: [correctness, comparative, milestone]
+    parallel_group: candidate
+    cli: "<TBD — to be filled when CLI tool is identified or built>"
+    output:
+      ctrf: true
+      otlp: false
+
+  benchmark:
+    description: "Throughput, latency, and resource utilization"
+    signal:
+      pass_fail: true          # completion pass/fail is standalone
+      metrics: true            # metrics only meaningful in comparative mode
+    modes: [correctness, comparative]
+    parallel_group: candidate
+    cli: "<TBD>"
+    output:
+      ctrf: true
+      otlp: true
+
+  mega_small:
+    description: "End-to-end Mega integration — small simulation payload"
+    signal:
+      pass_fail: true          # simulation pass/fail
+      metrics: true            # KPIs for comparative / milestone
+    milestone_thresholds: {}   # to be populated at milestone planning
+    modes: [correctness, comparative, milestone]
+    parallel_group: candidate
+    opt_in: false
+    cli: "<TBD>"
+    output:
+      ctrf: true
+      otlp: true
+
+  mega_large:
+    description: "End-to-end Mega integration — large simulation payload (opt-in)"
+    signal:
+      pass_fail: true
+      metrics: true
+    milestone_thresholds: {}
+    modes: [correctness, comparative, milestone]
+    parallel_group: candidate
+    opt_in: true               # not run on every PR
+    cli: "<TBD>"
+    output:
+      ctrf: true
+      otlp: true
+
+baseline:
+  required_for: [comparative, milestone]
+  tracks: [api, benchmark, mega_small, mega_large]
+
+envelope:
+  schema_version: "1"
+  result_file: ".suite-result.json"

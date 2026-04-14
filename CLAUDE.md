@@ -27,7 +27,7 @@ When writing `.task-result.json`, include a `tokens` block if available:
 This helps track token spend across the fleet.
 
 ## Working Directory
-You are in: `/tmp/fleet-workspaces/nkagan-nvidia/coreapi-integration/slot-2`
+You are in: `/tmp/fleet-workspaces/nkagan-nvidia/coreapi-integration/slot-0`
 Repos are checked out here. Use files directly — do not clone.
 
 ---
