@@ -1,8 +1,5 @@
-# Fleet testing configuration for coreapi-integration.
-# Design rationale: docs/adr/0001-integration-testing-strategy.md (Decision rule 8)
 version: "1"
 
-# Default execution mode. Overridden per invocation.
 default_mode: correctness
 
 tracks:
@@ -13,8 +10,7 @@ tracks:
       metrics: false
     modes: [correctness, comparative, milestone]
     parallel_group: candidate
-    opt_in: false
-    cli: "<TBD — to be filled when CLI tool is identified or built>"
+    cli: "<TBD>"
     output:
       ctrf: true
       otlp: false
@@ -22,11 +18,10 @@ tracks:
   benchmark:
     description: "Throughput, latency, and resource utilization"
     signal:
-      pass_fail: true          # completion pass/fail is standalone
-      metrics: true            # metrics only meaningful in comparative mode
+      pass_fail: true
+      metrics: true
     modes: [correctness, comparative]
     parallel_group: candidate
-    opt_in: false
     cli: "<TBD>"
     output:
       ctrf: true
@@ -35,9 +30,9 @@ tracks:
   mega_small:
     description: "End-to-end Mega integration — small simulation payload"
     signal:
-      pass_fail: true          # simulation pass/fail
-      metrics: true            # KPIs for comparative / milestone
-    milestone_thresholds: {}   # to be populated at milestone planning
+      pass_fail: true
+      metrics: true
+    milestone_thresholds: {}
     modes: [correctness, comparative, milestone]
     parallel_group: candidate
     opt_in: false
@@ -54,7 +49,7 @@ tracks:
     milestone_thresholds: {}
     modes: [correctness, comparative, milestone]
     parallel_group: candidate
-    opt_in: true               # not run on every PR
+    opt_in: true
     cli: "<TBD>"
     output:
       ctrf: true
