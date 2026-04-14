@@ -1,0 +1,14 @@
+{
+  "artifacts": [
+    "docs/adr/0001-integration-testing-strategy.md"
+  ],
+  "outcome": "success",
+  "summary": "Created docs/adr/0001-integration-testing-strategy.md and opened PR against main. The file was already committed on the fleet branch with the exact required content (209 lines). The ADR covers integration testing strategy for CoreAPI including test tracks, execution model, structured data requirements, CLI-first execution, and alternatives considered.",
+  "tokens": {
+    "api_calls": 34,
+    "completion_tokens": 6626,
+    "estimated_cost_usd": 5.86254,
+    "prompt_tokens": 357706,
+    "total_tokens": 364332
+  }
+}
