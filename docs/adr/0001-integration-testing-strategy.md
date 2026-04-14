@@ -78,6 +78,10 @@ We adopt the following rules:
    a baseline run, so milestone validation can run without a prior version.
 7. **Large-payload tests are opt-in** — not run on every PR; triggered for
    milestone validation and comparative analysis on demand.
+8. **Test track configuration is declared in `.fleet-testing.yaml`** — the file
+   in the repo root is the canonical definition of all tracks, their signal
+   types, output schemas, and mode applicability. The ADR describes the design
+   rationale; the YAML is the machine-readable contract.
 
 ## Execution Model
 
@@ -136,7 +140,8 @@ triage, comparative analysis, and escalation — not mechanical orchestration.
 Every discrete, repeatable operation in the test pipeline must be expressible
 as a CLI invocation with structured input and structured output. If no CLI
 exists for an operation, that gap is a task to be filed, not a reason to
-use an agent.
+use an agent. The `.fleet-testing.yaml` file defines which CLI commands
+implement each track.
 
 ### Expected CLI Surface
 
@@ -182,6 +187,8 @@ results. Agents must not replicate logic that belongs in a CLI tool.
   false signals on hardware variance.
 - **Single test mode (correctness only):** Rejected — comparative analysis
   is a core requirement for evaluating CoreAPI changes across versions.
+- **Inline configuration in prose only:** Rejected — machine-readable config
+  (`.fleet-testing.yaml`) is required for automation.
 
 ## Consequences
 
@@ -193,11 +200,15 @@ results. Agents must not replicate logic that belongs in a CLI tool.
   and uses purpose-built schemas for each.
 - Positive: CLI-first execution makes pipelines auditable, reproducible, and
   agent-independent.
+- Positive: `.fleet-testing.yaml` makes the test contract machine-readable
+  and versionable.
 - Negative: Comparative mode requires tooling to pair baseline and candidate
   runs and compute deltas — this must be built.
 - Negative: Large-payload tests require GPU resources and scheduling discipline
   to avoid blocking CI.
 - Negative: CTRF is newer than JUnit XML; ecosystem tooling is still maturing.
+- Negative: `.fleet-testing.yaml` schema must be kept in sync with the ADR
+  as the design evolves.
 
 ## Open Questions
 
