@@ -55,6 +55,19 @@ Intended for milestone validation and deep comparative analysis.
 - **Usable in:** Correctness mode, Comparative mode, Milestone validation
 - **Note:** Wall-clock cost is significant; not suitable for every CI run
 
+## Repository Map
+
+coreapi-integration owns test orchestration only. Test execution is delegated to external repos:
+
+| Track | Repo | Notes |
+|-------|------|-------|
+| API Tests | [omniverse-api-core-tests-srtx-api-test](https://github.com/NVIDIA-dev/omniverse-api-core-tests-srtx-api-test) | Provides API correctness test and benchmark CLI |
+| Benchmark Tests | [omniverse-api-core-tests-srtx-api-test](https://github.com/NVIDIA-dev/omniverse-api-core-tests-srtx-api-test) | Same repo; benchmark entrypoints TBD |
+| Mega Integration (small payload) | [omniverse-mega-dev](https://github.com/NVIDIA-dev/omniverse-mega-dev) | Simulation driver at blueprints/mega/mega-simulation/ |
+| Mega Integration (large payload) | [omniverse-mega-dev](https://github.com/NVIDIA-dev/omniverse-mega-dev) | Same driver; payload size configured at invocation |
+
+Note: omniverse-mega-dev is a mirror of Gitlab omniverse/mega/mega-dev. The mega-simulation component was consolidated from a separate upstream repo into mega-dev as part of a monorepo unification. The simulation entry point lives at blueprints/mega/mega-simulation/ within the repo.
+
 ## Decision
 
 We adopt the following rules:
