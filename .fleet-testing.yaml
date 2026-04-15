@@ -5,6 +5,7 @@ default_mode: correctness
 tracks:
   api:
     description: "CoreAPI surface correctness — request/response contracts, error handling, edge cases"
+    external_repo: NVIDIA-dev/omniverse-api-core-tests-srtx-api-test
     signal:
       pass_fail: true
       metrics: false
@@ -17,6 +18,7 @@ tracks:
 
   benchmark:
     description: "Throughput, latency, and resource utilization"
+    external_repo: NVIDIA-dev/omniverse-api-core-tests-srtx-api-test
     signal:
       pass_fail: true
       metrics: true
@@ -29,6 +31,8 @@ tracks:
 
   mega_small:
     description: "End-to-end Mega integration — small simulation payload"
+    external_repo: NVIDIA-dev/omniverse-mega-dev
+    external_path: blueprints/mega/mega-simulation
     signal:
       pass_fail: true
       metrics: true
@@ -43,6 +47,8 @@ tracks:
 
   mega_large:
     description: "End-to-end Mega integration — large simulation payload (opt-in)"
+    external_repo: NVIDIA-dev/omniverse-mega-dev
+    external_path: blueprints/mega/mega-simulation
     signal:
       pass_fail: true
       metrics: true
