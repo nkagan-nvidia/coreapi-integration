@@ -28,4 +28,4 @@ All test tracks emit structured output:
 
 ## Architecture Decision Records
 
-See [`docs/adr/`](docs/adr/) for architectural decisions governing this project.
+See [`adrs/`](adrs/) for architectural decisions governing this project.
